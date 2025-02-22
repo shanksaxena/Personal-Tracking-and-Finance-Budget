@@ -48,3 +48,47 @@ function updateTransactionList() {
             </div>
         `).join('');
 }
+let expenseChart;
+
+function updateChart() {
+    const ctx = document.getElementById('expenseChart').getContext('2d');
+    const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+    const categoryTotals = transactions.reduce((acc, curr) => {
+        acc[curr.category] = (acc[curr.category] || 0) + curr.amount;
+        return acc;
+    }, {});
+
+    if (expenseChart) {
+        expenseChart.destroy();
+    }
+
+    expenseChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(categoryTotals),
+            datasets: [{
+                data: Object.values(categoryTotals),
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Expenses by Category'
+                }
+            }
+        }
+    });
+}
