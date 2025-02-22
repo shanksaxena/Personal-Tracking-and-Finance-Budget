@@ -1,50 +1,100 @@
+/* static/css/style.css */
+
+/* General Styling */
 :root {
-    /* Modern color palette */
-    --primary-color: #6366f1;    /* Indigo */
-    --primary-dark: #4f46e5;     /* Darker Indigo */
-    --secondary-color: #64748b;  /* Slate */
-    --success-color: #22c55e;    /* Green */
-    --danger-color: #ef4444;     /* Red */
-    --warning-color: #f59e0b;    /* Amber */
-    --background-light: #f8fafc; /* Light gray */
-    --text-primary: #0f172a;     /* Dark slate */
-    --text-secondary: #475569;   /* Medium slate */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    
-    /* Transitions */
-    --transition-base: all 0.3s ease;
-  }
-  
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--background-light);
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md);
-  }
-  
-  .card {
-    background: white;
-    border-radius: 0.75rem;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition-base);
-    border: none;
-    padding: var(--spacing-md);
-  }
-  
-  .card:hover {
-    box-shadow: var(--shadow-md);
-  }
-  
+  --primary-color: #7952B3; /* Bootstrap Purple 500 */
+  --body-bg: #f8f9fa; /* Light Gray */
+  --card-bg: #ffffff;
+  --text-color: #343a40; /* Dark Gray */
+}
+
+/* Dark Mode Styles */
+[data-theme='dark'] {
+  --body-bg: #343a40;
+  --card-bg: #495057;
+  --text-color: #f8f9fa;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar {
+  transition: background-color 0.3s;
+}
+
+.navbar-light .navbar-brand {
+  color: var(--primary-color);
+}
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+  color: #563d7c; /* Darker Purple */
+}
+
+/* Overrides for Bootstrap Components in Dark Mode */
+[data-theme='dark'] .navbar-light {
+  background-color: #212529;
+}
+
+[data-theme='dark'] .form-control,
+[data-theme='dark'] .form-select {
+  background-color: #495057;
+  color: #f8f9fa;
+  border-color: #495057;
+}
+
+[data-theme='dark'] .form-control:focus,
+[data-theme='dark'] .form-select:focus {
+  background-color: #495057;
+  color: #f8f9fa;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(128, 189, 255, 0.25);
+}
+
+[data-theme='dark'] .card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .btn-outline-secondary {
+  color: #f8f9fa;
+  border-color: #6c757d;
+}
+
+[data-theme='dark'] .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Creative Font */
+h1,
+h2,
+h3 {
+  font-family: 'Sansita Swashed', cursive;
+}
+
+/* Tagline Style */
+.tagline {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+/* Custom Category Input Visibility */
+#customCategoryContainer.d-none {
+  display: none;
+}
+
+/* Chart Styles (if needed, customize for dark mode) */
+#expenseChart {
+  width: 100%;
+  height: auto;
+}
