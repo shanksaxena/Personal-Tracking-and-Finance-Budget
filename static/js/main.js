@@ -27,3 +27,24 @@ function addTransaction() {
         updateChart();
     }
 }
+function updateTransactionList() {
+    const transactionListEl = document.getElementById('transactionList');
+    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    transactions = transactions.reverse();
+
+    transactionListEl.innerHTML = transactions.length === 0 ? 
+        '<p>No transactions yet.</p>' : 
+        transactions.map(transaction => `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${transaction.category}</h5>
+                    <p class="card-text">$${transaction.amount.toFixed(2)}</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            ${new Date(transaction.date).toLocaleString()}
+                        </small>
+                    </p>
+                </div>
+            </div>
+        `).join('');
+}
